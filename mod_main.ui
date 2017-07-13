@@ -6,31 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>885</width>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>mod_main</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="ribbon_mod" name="widget" native="true"/>
+   </item>
+   <item>
+    <widget class="data_widget" name="widget_2" native="true">
+     <zorder>widget</zorder>
+    </widget>
+   </item>
+   <item>
+    <widget class="mod_widget" name="widget_3" native="true"/>
    </item>
   </layout>
  </widget>
@@ -40,6 +33,18 @@
    <class>ribbon_mod</class>
    <extends>QWidget</extends>
    <header>interface_control/ribbon_mod.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>data_widget</class>
+   <extends>QWidget</extends>
+   <header>data_widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>mod_widget</class>
+   <extends>QWidget</extends>
+   <header>mod_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

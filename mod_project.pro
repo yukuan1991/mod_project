@@ -28,13 +28,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cc\
         mod_main.cc \
     interface_control/ribbon.cc \
-    interface_control/ribbon_mod.cc
+    interface_control/ribbon_mod.cc \
+    data_widget.cc \
+    mod_widget.cc
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
-    interface_control/ribbon_mod.h
+    interface_control/ribbon_mod.h \
+    data_widget.h \
+    mod_widget.h
 
-FORMS    += mod_main.ui
+FORMS    += mod_main.ui \
+    data_widget.ui \
+    mod_widget.ui
 
 LIBS += -lboost_locale
 LIBS += -liconv
