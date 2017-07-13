@@ -30,13 +30,15 @@ SOURCES += main.cc\
     interface_control/ribbon.cc \
     interface_control/ribbon_mod.cc \
     data_widget.cc \
-    mod_widget.cc
+    mod_widget.cc \
+    interface_control/push_button.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
     interface_control/ribbon_mod.h \
     data_widget.h \
-    mod_widget.h
+    mod_widget.h \
+    interface_control/push_button.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \
