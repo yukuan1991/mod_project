@@ -22,12 +22,12 @@ private:
     Ui::mod_widget *ui;
 
     std::map<std::string, std::tuple<std::string, std::string, std::string, std::string, std::string>> mod_data_;
-//    tinyxml2::XMLDocument mod_doc_;
-//    tinyxml2::XMLElement* mod_attr_;
-//    tinyxml2::XMLElement* mod_name_;
-//    tinyxml2::XMLElement* mod_content_;
-//    tinyxml2::XMLElement* mod_example_;
-//    tinyxml2::XMLElement* mod_remark_;
+    tinyxml2::XMLDocument mod_doc_;
+    tinyxml2::XMLElement* mod_attr_;
+    tinyxml2::XMLElement* mod_name_;
+    tinyxml2::XMLElement* mod_content_;
+    tinyxml2::XMLElement* mod_example_;
+    tinyxml2::XMLElement* mod_remark_;
 };
 
 #endif // MOD_WIDGET_H

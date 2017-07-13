@@ -31,14 +31,18 @@ SOURCES += main.cc\
     interface_control/ribbon_mod.cc \
     data_widget.cc \
     mod_widget.cc \
-    interface_control/push_button.cpp
+    interface_control/push_button.cpp \
+    Qt-Utils/tinyxml2.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
     interface_control/ribbon_mod.h \
     data_widget.h \
     mod_widget.h \
-    interface_control/push_button.h
+    interface_control/push_button.h \
+    Qt-Utils/tinyxml2.h \
+    Qt-Utils/stl_extension.hpp \
+    Qt-Utils/json.hpp
 
 FORMS    += mod_main.ui \
     data_widget.ui \
