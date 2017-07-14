@@ -17,7 +17,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
 
         edit[0] = ::move (b);
 
-        b.add ("改变作业项数", QPixmap ("png/作业项数.png"));
+        b.add ("改变作业项数", QPixmap ("png/作业项数.png"), add_row_);
         b.set_title("第二类");
 
         edit[1] = ::move (b);
@@ -37,5 +37,19 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         add_tab(help, "帮助");
     }
 
+    cut_->setEnabled(false);
+    copy_->setEnabled(false);
+    paste_->setEnabled(false);
+    del_->setEnabled(false);
+    add_row_->setEnabled(false);
+
+    connect(this, &ribbon_mod::set_enabled, cut_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, copy_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, paste_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, del_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, add_row_, &ribbon_tool::setEnabled);
+
+    connect(add_row_, &ribbon_tool::clicked, this, &ribbon_mod::add_row);
     connect(help_, &ribbon_tool::clicked, this, &ribbon_mod::help);
+
 }

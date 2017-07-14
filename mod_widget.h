@@ -12,10 +12,20 @@ class mod_widget;
 class mod_widget : public QWidget
 {
     Q_OBJECT
-
+signals:
+    void code_changed (const QVariant&);
+    void unit_changed (double);
+    void return_pressed ();
 public:
     explicit mod_widget(QWidget *parent = 0);
     ~mod_widget();
+
+    double current_unit ();
+
+private:
+    void on_button_mod_confirm_return_clicked();
+
+    void on_button_mod_backspace_clicked();
 private:
     void init();
     void init_xml ();

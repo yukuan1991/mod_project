@@ -13,11 +13,28 @@ mod_widget::mod_widget(QWidget *parent) :
 
     init ();
     std::tie (kv_tmu_, mod_data_) = read_tmu_data ();
+
+//    emit unit_changed(0.129);
 }
 
 mod_widget::~mod_widget()
 {
     delete ui;
+}
+
+//double mod_widget::current_unit()
+//{
+//    return 0.129;
+//}
+
+void mod_widget::on_button_mod_confirm_return_clicked()
+{
+    emit return_pressed ();
+}
+
+void mod_widget::on_button_mod_backspace_clicked()
+{
+    emit code_changed (1);
 }
 
 void mod_widget::init()
@@ -92,5 +109,5 @@ void mod_widget::on_mod_clicked()
     QObject* src = sender (); assert (src);
     push_button* button = dynamic_cast<push_button*>(src); assert (button);
     QByteArray arr {("mod_" + button->text ()).toStdString ().data ()};
-//    emit code_changed (arr);
+    emit code_changed (arr);
 }
