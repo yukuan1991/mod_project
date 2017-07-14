@@ -36,7 +36,10 @@ SOURCES += main.cc\
     Qt-Utils/encryption.cpp \
     Qt-Utils/des.cpp \
     view/table_view.cpp \
-    model/json_model.cpp
+    model/json_model.cpp \
+    pts/pts_delegate.cpp \
+    pts/pts_model.cpp \
+    pts/code_edit.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -52,7 +55,10 @@ HEADERS  += mod_main.h \
     Qt-Utils/des.h \
     view/table_view.h \
     model/json_model.h \
-    Qt-Utils/krys_application.hpp
+    Qt-Utils/krys_application.hpp \
+    pts/pts_delegate.h \
+    pts/pts_model.h \
+    pts/code_edit.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \
@@ -62,3 +68,4 @@ LIBS += -lboost_locale
 LIBS += -liconv
 LIBS += -lboost_filesystem
 LIBS += -lboost_system
+LIBS += -lboost_regex

@@ -362,18 +362,18 @@ inline QString system_path_to_production_path (const QString& )
 //}
 
 
-//inline QString get_method (const json& file_data)
-//{
-//    auto iter_attachment = file_data.find ("附加信息");
-//    assert (iter_attachment != file_data.end ());
-//    assert (iter_attachment->is_object ());
+inline QString get_method (const json& file_data)
+{
+    auto iter_attachment = file_data.find ("附加信息");
+    assert (iter_attachment != file_data.end ());
+    assert (iter_attachment->is_object ());
 
-//    auto iter_method = iter_attachment->find ("测量方法");
-//    assert (iter_method != iter_attachment->end ());
-//    assert (iter_method->is_string ());
-//    std::string method = *iter_method;
+    auto iter_method = iter_attachment->find ("测量方法");
+    assert (iter_method != iter_attachment->end ());
+    assert (iter_method->is_string ());
+    std::string method = *iter_method;
 
-//    return method.data ();
-//}
+    return method.data ();
+}
 
 #endif // ARITHMETIC_RESOURCE_H
