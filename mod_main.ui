@@ -33,12 +33,10 @@
     <widget class="ribbon_mod" name="widget_ribbon" native="true"/>
    </item>
    <item>
-    <widget class="data_widget" name="widget_data" native="true">
-     <zorder>widget_ribbon</zorder>
-    </widget>
+    <widget class="data_widget" name="widget_data" native="true"/>
    </item>
    <item>
-    <widget class="mod_widget" name="widget_3" native="true"/>
+    <widget class="mod_widget" name="widget_mod" native="true"/>
    </item>
   </layout>
  </widget>

@@ -37,7 +37,7 @@
      <property name="handleWidth">
       <number>1</number>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
         <number>0</number>
@@ -65,11 +65,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="table_left"/>
+        <widget class="table_view" name="table_left"/>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
         <number>0</number>
@@ -97,11 +97,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="table_right"/>
+        <widget class="table_view" name="table_right"/>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
         <number>0</number>
@@ -129,21 +129,21 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="table_result"/>
+        <widget class="table_view" name="table_result"/>
        </item>
       </layout>
      </widget>
     </widget>
    </item>
   </layout>
-  <zorder>label</zorder>
-  <zorder>table_left</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>table_right</zorder>
-  <zorder>table_result</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>table_view</class>
+   <extends>QTableView</extends>
+   <header>view/table_view.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -124,19 +124,22 @@ void ribbon::setup_menu()
     file->setMenu (menu);
 
     auto action =  make_action (QPixmap ("png/新建.png"), "新建");
+    connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("新建"); });
     menu->addAction (action.release ());
 
     action =  make_action (QPixmap ("png/打开.png"), "打开");
+    connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("打开"); });
     menu->addAction (action.release ());
 
     action =  make_action (QPixmap ("png/保存.png"), "保存");
-
+    connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("保存"); });
     menu->addAction (action.release ());
 
-    action =  make_action (QPixmap ("png/另存为.png"), "另存为");
-    menu->addAction (action.release ());
+//    action =  make_action (QPixmap ("png/另存为.png"), "另存为");
+//    menu->addAction (action.release ());
 
     action =  make_action (QPixmap ("png/退出.png"), "退出");
+    connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("退出"); });
     menu->addAction (action.release ());
 
     menu->setContentsMargins(10, 0, 0, 0);

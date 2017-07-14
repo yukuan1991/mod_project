@@ -39,7 +39,8 @@ SOURCES += main.cc\
     model/json_model.cpp \
     pts/pts_delegate.cpp \
     pts/pts_model.cpp \
-    pts/code_edit.cpp
+    pts/code_edit.cpp \
+    interface_control/about_us_dlg.cc
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -58,7 +59,8 @@ HEADERS  += mod_main.h \
     Qt-Utils/krys_application.hpp \
     pts/pts_delegate.h \
     pts/pts_model.h \
-    pts/code_edit.h
+    pts/code_edit.h \
+    interface_control/about_us_dlg.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \

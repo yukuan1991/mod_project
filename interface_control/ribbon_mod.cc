@@ -29,7 +29,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         std::array<ui_group, 1> help;
 
         button_cell b;
-        b.add ("帮助", QPixmap ("png/帮助.png"));
+        b.add ("帮助", QPixmap ("png/帮助.png"), help_);
         b.set_title("第一类");
 
         help[0] = ::move(b);
@@ -37,4 +37,5 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         add_tab(help, "帮助");
     }
 
+    connect(help_, &ribbon_tool::clicked, this, &ribbon_mod::help);
 }

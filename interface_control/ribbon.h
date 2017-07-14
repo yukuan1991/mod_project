@@ -22,6 +22,9 @@ constexpr auto null = nullptr;
 class ribbon : public QTabWidget
 {
     Q_OBJECT
+signals:
+    void file_menu_triggered (const QString &);
+    void set_enabled(bool);
 protected:
     using button_init = std::function<void (ribbon_tool*)>;
 
