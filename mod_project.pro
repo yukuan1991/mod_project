@@ -42,7 +42,8 @@ HEADERS  += mod_main.h \
     interface_control/push_button.h \
     Qt-Utils/tinyxml2.h \
     Qt-Utils/stl_extension.hpp \
-    Qt-Utils/json.hpp
+    Qt-Utils/json.hpp \
+    arithmetic_resource.hpp
 
 FORMS    += mod_main.ui \
     data_widget.ui \

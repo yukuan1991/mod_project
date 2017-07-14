@@ -223,7 +223,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -294,12 +294,6 @@
         </layout>
        </item>
       </layout>
-      <zorder>label_total</zorder>
-      <zorder>label</zorder>
-      <zorder>label_total</zorder>
-      <zorder>label</zorder>
-      <zorder>horizontalSpacer_2</zorder>
-      <zorder>verticalSpacer</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -322,7 +316,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="textBrowser"/>
+        <widget class="QTextBrowser" name="text_area_mod_description"/>
        </item>
       </layout>
      </widget>

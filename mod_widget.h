@@ -17,6 +17,8 @@ public:
     ~mod_widget();
 private:
     void init();
+    void on_mod_hover ();
+    void on_mod_clicked ();
 
 private:
     Ui::mod_widget *ui;
