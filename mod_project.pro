@@ -34,7 +34,9 @@ SOURCES += main.cc\
     interface_control/push_button.cpp \
     Qt-Utils/tinyxml2.cpp \
     Qt-Utils/encryption.cpp \
-    Qt-Utils/des.cpp
+    Qt-Utils/des.cpp \
+    view/table_view.cpp \
+    model/json_model.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -47,7 +49,10 @@ HEADERS  += mod_main.h \
     Qt-Utils/json.hpp \
     arithmetic_resource.hpp \
     Qt-Utils/encryption.h \
-    Qt-Utils/des.h
+    Qt-Utils/des.h \
+    view/table_view.h \
+    model/json_model.h \
+    Qt-Utils/krys_application.hpp
 
 FORMS    += mod_main.ui \
     data_widget.ui \

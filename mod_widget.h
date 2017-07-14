@@ -25,23 +25,6 @@ private:
 private:
     Ui::mod_widget *ui;
 
-    //most ---------------------------
-
-    std::vector<QComboBox*> cms_;
-    std::vector<QComboBox*> gms_;
-    std::vector<QComboBox*> tus_;
-    std::map<std::string, std::vector<std::pair<std::string, bool>>> most_data_;
-
-    //mtm-----------------------------
-
-    std::map<std::string, std::tuple<std::string, std::string, std::string, std::string, unsigned>> mtm_data_;
-    tinyxml2::XMLDocument mtm_doc_;
-    tinyxml2::XMLElement* mtm_des_;
-    tinyxml2::XMLElement* mtm_start_;
-    tinyxml2::XMLElement* mtm_content_;
-    tinyxml2::XMLElement* mtm_end_;
-    tinyxml2::XMLElement* mtm_tmu_;
-
     std::map<std::string, std::tuple<std::string, std::string, std::string, std::string, std::string>> mod_data_;
     tinyxml2::XMLDocument mod_doc_;
     tinyxml2::XMLElement* mod_attr_ = nullptr;

@@ -13,11 +13,6 @@ mod_widget::mod_widget(QWidget *parent) :
 
     init ();
     std::tie (kv_tmu_, mod_data_) = read_tmu_data ();
-    for (auto & it : kv_tmu_)
-    {
-        qDebug () << it.first.data () << " --> " << it.second;
-    }
-//    std::tie (kv_tmu_, most_data_, mod_data_, mtm_data_) = read_tmu_data ();
 }
 
 mod_widget::~mod_widget()
