@@ -32,7 +32,9 @@ SOURCES += main.cc\
     data_widget.cc \
     mod_widget.cc \
     interface_control/push_button.cpp \
-    Qt-Utils/tinyxml2.cpp
+    Qt-Utils/tinyxml2.cpp \
+    Qt-Utils/encryption.cpp \
+    Qt-Utils/des.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -43,7 +45,9 @@ HEADERS  += mod_main.h \
     Qt-Utils/tinyxml2.h \
     Qt-Utils/stl_extension.hpp \
     Qt-Utils/json.hpp \
-    arithmetic_resource.hpp
+    arithmetic_resource.hpp \
+    Qt-Utils/encryption.h \
+    Qt-Utils/des.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \

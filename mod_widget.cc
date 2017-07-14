@@ -1,12 +1,23 @@
 ﻿#include "mod_widget.h"
 #include "ui_mod_widget.h"
 #include <assert.h>
+#include "arithmetic_resource.hpp"
+
+std::map<std::string, int> mod_widget::kv_tmu_;
 
 mod_widget::mod_widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::mod_widget)
 {
     ui->setupUi(this);
+
+    init ();
+    std::tie (kv_tmu_, mod_data_) = read_tmu_data ();
+    for (auto & it : kv_tmu_)
+    {
+        qDebug () << it.first.data () << " --> " << it.second;
+    }
+//    std::tie (kv_tmu_, most_data_, mod_data_, mtm_data_) = read_tmu_data ();
 }
 
 mod_widget::~mod_widget()
@@ -26,6 +37,33 @@ void mod_widget::init()
             connect (button, &push_button::clicked, this, &mod_widget::on_mod_clicked);
         }
     }
+
+    init_xml ();
+}
+
+void mod_widget::init_xml()
+{
+    auto lambda_add = [&] (auto& content, auto& ptr)
+    {
+        tinyxml2::XMLElement* p = mod_doc_.NewElement ("p");
+        mod_doc_.InsertEndChild (p);
+        p->SetAttribute ("style", R"(margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;)");
+        tinyxml2::XMLElement* span = mod_doc_.NewElement ("span");
+        span->SetAttribute ("style", "font-size:11pt; font-weight:600;");
+        p->InsertEndChild (span);
+        p->InsertEndChild (mod_doc_.NewElement ("br"));
+        span->SetText (content);
+        span = mod_doc_.NewElement ("span");
+        span->SetAttribute ("style", "font-size:11pt;");
+        p->InsertEndChild (span);
+        ptr = span;
+    };
+
+    lambda_add ("动作属性", mod_attr_);
+    lambda_add ("动作名称", mod_name_);
+    lambda_add ("动作含义", mod_content_);
+    lambda_add ("举例", mod_example_);
+    lambda_add ("备注", mod_remark_);
 }
 
 void mod_widget::on_mod_hover()
@@ -49,8 +87,9 @@ void mod_widget::on_mod_hover()
 
     tinyxml2::XMLPrinter prt;
     mod_doc_.Print (&prt);
+    const auto text = prt.CStr ();
 
-    ui->text_area_mod_description->setText (prt.CStr ());
+    ui->text_area_mod_description->setText(text);
 }
 
 void mod_widget::on_mod_clicked()

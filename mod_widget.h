@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <Qt-Utils/tinyxml2.h>
 
+class QComboBox;
 namespace Ui {
 class mod_widget;
 }
@@ -17,19 +18,39 @@ public:
     ~mod_widget();
 private:
     void init();
+    void init_xml ();
     void on_mod_hover ();
     void on_mod_clicked ();
 
 private:
     Ui::mod_widget *ui;
 
+    //most ---------------------------
+
+    std::vector<QComboBox*> cms_;
+    std::vector<QComboBox*> gms_;
+    std::vector<QComboBox*> tus_;
+    std::map<std::string, std::vector<std::pair<std::string, bool>>> most_data_;
+
+    //mtm-----------------------------
+
+    std::map<std::string, std::tuple<std::string, std::string, std::string, std::string, unsigned>> mtm_data_;
+    tinyxml2::XMLDocument mtm_doc_;
+    tinyxml2::XMLElement* mtm_des_;
+    tinyxml2::XMLElement* mtm_start_;
+    tinyxml2::XMLElement* mtm_content_;
+    tinyxml2::XMLElement* mtm_end_;
+    tinyxml2::XMLElement* mtm_tmu_;
+
     std::map<std::string, std::tuple<std::string, std::string, std::string, std::string, std::string>> mod_data_;
     tinyxml2::XMLDocument mod_doc_;
-    tinyxml2::XMLElement* mod_attr_;
-    tinyxml2::XMLElement* mod_name_;
-    tinyxml2::XMLElement* mod_content_;
-    tinyxml2::XMLElement* mod_example_;
-    tinyxml2::XMLElement* mod_remark_;
+    tinyxml2::XMLElement* mod_attr_ = nullptr;
+    tinyxml2::XMLElement* mod_name_ = nullptr;
+    tinyxml2::XMLElement* mod_content_ = nullptr;
+    tinyxml2::XMLElement* mod_example_ = nullptr;
+    tinyxml2::XMLElement* mod_remark_ = nullptr;
+
+    static std::map<std::string, int> kv_tmu_;
 };
 
 #endif // MOD_WIDGET_H
