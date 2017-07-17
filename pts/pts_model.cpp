@@ -60,14 +60,18 @@ bool pts_model::setData(const QModelIndex &index, const QVariant &value, int rol
 
     auto op_header = get_header (index);
     assert (op_header);
+
     for (auto& it : this->set_data_map_)
     {
+
         if (*op_header == it.header_)
         {
+
             auto func_ptr = it.setter_;
             return (this->*func_ptr) (index, value, role);
         }
     }
+
     return json_model::setData (index, value, role);
 }
 

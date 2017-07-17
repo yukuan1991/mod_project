@@ -35,7 +35,6 @@ private:
     QVariant get_allowance (const QModelIndex& index, int role) const;
     QVariant get_std (const QModelIndex& index, int role) const;
 
-
     void init_row (unsigned row);
 private:
     using header_data_getter = QVariant (pts_model::*) (const QModelIndex&, int) const;

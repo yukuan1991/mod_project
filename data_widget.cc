@@ -156,7 +156,6 @@ void data_widget::on_copy()
 {
     if (current_view_ != nullptr)
     {
-        qDebug() << "on_copy";
         current_view_->on_copy_del (table_view::OPERATION_COPY);
     }
 }
@@ -165,7 +164,6 @@ void data_widget::on_paste()
 {
     if (current_view_ != nullptr)
     {
-        qDebug() << "on_paste";
         current_view_->on_paste ();
     }
 }
