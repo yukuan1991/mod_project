@@ -1,12 +1,21 @@
 ﻿#include "data_widget.h"
 #include "ui_data_widget.h"
 #include <QMessageBox>
+#include <QScrollBar>
 
 data_widget::data_widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::data_widget)
 {
     ui->setupUi(this);
+    ui->table_left->setItemDelegate (left_delegate_.get ());
+    ui->table_right->setItemDelegate (right_delegate_.get ());
+    ui->table_result->setItemDelegate (result_delegate_.get ());
+
+    views_.push_back (ui->table_result);
+    views_.push_back (ui->table_left);
+    views_.push_back (ui->table_right);
+    set_views();
 }
 
 data_widget::~data_widget()
@@ -127,4 +136,73 @@ void data_widget::clear()
     right_model_->clear ();
     ui->table_right->setModel (nullptr);
     ui->table_right->setModel (right_model_.get ());
+}
+
+void data_widget::on_cut()
+{
+    if (current_view_ != nullptr)
+    {
+        current_view_->on_copy_del (table_view::OPERATION_COPY | table_view::OPERATION_DEL);
+    }
+}
+
+void data_widget::on_copy()
+{
+    if (current_view_ != nullptr)
+    {
+        current_view_->on_copy_del (table_view::OPERATION_COPY);
+    }
+}
+
+void data_widget::on_paste()
+{
+    if (current_view_ != nullptr)
+    {
+        current_view_->on_paste ();
+    }
+}
+
+void data_widget::on_del()
+{
+    if (current_view_ != nullptr)
+    {
+        current_view_->on_copy_del (table_view::OPERATION_DEL);
+    }
+}
+
+void data_widget::on_view_clicked()
+{
+    QObject* src = sender (); assert (src);
+    current_view_ = dynamic_cast<table_view*>(src); assert (current_view_);
+
+    for (typename decltype (views_)::size_type i = 0; i < views_.size (); i ++)
+    {
+        if (views_[i] != current_view_)
+        {
+            views_[i]->clearSelection ();
+        }
+    }
+}
+
+void data_widget::set_views()
+{
+    for (auto iter : views_)
+    {
+        assert (iter);
+        connect (iter, &table_view::mouse_pressed, this, &data_widget::on_view_clicked);
+        iter->horizontalHeader ()->setSectionResizeMode (QHeaderView::Interactive);
+        iter->verticalHeader ()->setSectionResizeMode (QHeaderView::Fixed);
+
+        auto scroll = make_unique<QScrollBar> ();
+        iter->setHorizontalScrollBarPolicy (Qt::ScrollBarAlwaysOn);
+        connect (scroll.get (), &QScrollBar::valueChanged, [=] (int value)
+        {
+            for (auto inner_iter : views_)
+            {
+                inner_iter->verticalScrollBar ()->setValue (value);
+            }
+        });
+
+        iter->setVerticalScrollBar (scroll.release ());
+    }
 }

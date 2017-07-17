@@ -5,6 +5,10 @@ class ribbon_mod : public ribbon
 {
     Q_OBJECT
 signals:
+    void cut();
+    void copy();
+    void paste();
+    void del();
     void add_row();
     void help();
 public:

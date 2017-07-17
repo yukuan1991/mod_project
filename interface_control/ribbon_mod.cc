@@ -49,6 +49,11 @@ ribbon_mod::ribbon_mod(QWidget *parent)
     connect(this, &ribbon_mod::set_enabled, del_, &ribbon_tool::setEnabled);
     connect(this, &ribbon_mod::set_enabled, add_row_, &ribbon_tool::setEnabled);
 
+    connect(cut_, &ribbon_tool::clicked, this, &ribbon_mod::cut);
+    connect(copy_, &ribbon_tool::clicked, this, &ribbon_mod::copy);
+    connect(paste_, &ribbon_tool::clicked, this, &ribbon_mod::paste);
+    connect(del_, &ribbon_tool::clicked, this, &ribbon_mod::del);
+
     connect(add_row_, &ribbon_tool::clicked, this, &ribbon_mod::add_row);
     connect(help_, &ribbon_tool::clicked, this, &ribbon_mod::help);
 

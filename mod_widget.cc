@@ -50,6 +50,11 @@ void mod_widget::init()
         }
     }
 
+    connect(ui->button_mod_backspace, &QPushButton::clicked,
+            this, &mod_widget::on_button_mod_backspace_clicked);
+    connect(ui->button_mod_confirm_return, &QPushButton::clicked,
+            this, &mod_widget::on_button_mod_confirm_return_clicked);
+
     init_xml ();
 }
 

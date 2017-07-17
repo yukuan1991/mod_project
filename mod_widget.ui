@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>964</width>
-    <height>351</height>
+    <width>895</width>
+    <height>238</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
@@ -60,66 +60,10 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="0">
-          <widget class="push_button" name="button_mod_6">
+         <item row="4" column="2">
+          <widget class="push_button" name="button_mod_15">
            <property name="text">
-            <string>G0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="push_button" name="button_mod_4">
-           <property name="text">
-            <string>M4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="push_button" name="button_mod_2">
-           <property name="text">
-            <string>M2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="push_button" name="button_mod_20">
-           <property name="text">
-            <string>L1</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="4">
-          <widget class="push_button" name="button_mod_14">
-           <property name="text">
-            <string>A4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="6">
-          <widget class="push_button" name="button_mod_21">
-           <property name="text">
-            <string>S30</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="push_button" name="button_mod_7">
-           <property name="text">
-            <string>G1</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="4">
-          <widget class="push_button" name="button_mod_17">
-           <property name="text">
-            <string>C4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="push_button" name="button_mod_13">
-           <property name="text">
-            <string>D3</string>
+            <string>R2</string>
            </property>
           </widget>
          </item>
@@ -130,20 +74,6 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="3">
-          <widget class="push_button" name="button_mod_8">
-           <property name="text">
-            <string>G3</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="push_button" name="button_mod_1">
-           <property name="text">
-            <string>M1</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="5">
           <widget class="push_button" name="button_mod_5">
            <property name="text">
@@ -151,17 +81,17 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="5">
-          <widget class="push_button" name="button_mod_11">
+         <item row="1" column="0">
+          <widget class="push_button" name="button_mod_6">
            <property name="text">
-            <string>P5</string>
+            <string>G0</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="push_button" name="button_mod_10">
+         <item row="0" column="1">
+          <widget class="push_button" name="button_mod_1">
            <property name="text">
-            <string>P2</string>
+            <string>M1</string>
            </property>
           </widget>
          </item>
@@ -179,6 +109,55 @@
            </property>
           </widget>
          </item>
+         <item row="4" column="6">
+          <widget class="push_button" name="button_mod_19">
+           <property name="text">
+            <string>B17</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="push_button" name="button_mod_13">
+           <property name="text">
+            <string>D3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="push_button" name="button_mod_10">
+           <property name="text">
+            <string>P2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="6">
+          <widget class="push_button" name="button_mod_21">
+           <property name="text">
+            <string>S30</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="push_button" name="button_mod_7">
+           <property name="text">
+            <string>G1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="push_button" name="button_mod_8">
+           <property name="text">
+            <string>G3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="push_button" name="button_mod_2">
+           <property name="text">
+            <string>M2</string>
+           </property>
+          </widget>
+         </item>
          <item row="4" column="5">
           <widget class="push_button" name="button_mod_18">
            <property name="text">
@@ -186,10 +165,10 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="2">
-          <widget class="push_button" name="button_mod_15">
+         <item row="5" column="1">
+          <widget class="push_button" name="button_mod_20">
            <property name="text">
-            <string>R2</string>
+            <string>L1</string>
            </property>
           </widget>
          </item>
@@ -200,10 +179,31 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="6">
-          <widget class="push_button" name="button_mod_19">
+         <item row="3" column="4">
+          <widget class="push_button" name="button_mod_14">
            <property name="text">
-            <string>B17</string>
+            <string>A4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="push_button" name="button_mod_4">
+           <property name="text">
+            <string>M4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="push_button" name="button_mod_11">
+           <property name="text">
+            <string>P5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="push_button" name="button_mod_17">
+           <property name="text">
+            <string>C4</string>
            </property>
           </widget>
          </item>

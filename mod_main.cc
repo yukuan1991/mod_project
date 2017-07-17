@@ -26,6 +26,12 @@ void mod_main::init()
 void mod_main::init_conn()
 {
     connect(ui->widget_ribbon, &ribbon_mod::file_menu_triggered, [this] (const QString & s) { file_operations(s); });
+
+    connect(ui->widget_ribbon, &ribbon_mod::cut, ui->widget_data, &data_widget::on_cut);
+    connect(ui->widget_ribbon, &ribbon_mod::copy, ui->widget_data, &data_widget::on_copy);
+    connect(ui->widget_ribbon, &ribbon_mod::paste, ui->widget_data, &data_widget::on_paste);
+    connect(ui->widget_ribbon, &ribbon_mod::del, ui->widget_data, &data_widget::on_del);
+
     connect(ui->widget_ribbon, &ribbon_mod::add_row, this, &mod_main::add_row);
     connect(ui->widget_ribbon, &ribbon_mod::help, this, &mod_main::help_advice);
 
