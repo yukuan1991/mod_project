@@ -51,6 +51,12 @@ void data_widget::add_code(const QVariant &code)
         return;
     }
 
+//    if (code_list.size () > 1)
+//    {
+//        QMessageBox::information (this, "代码", "选中了多个代码");
+//        return;
+//    }
+
     auto min_row = 99999;
     auto min_row_index = -1;
     for (int i = 0; i < code_list.size (); i++)
@@ -150,6 +156,7 @@ void data_widget::on_copy()
 {
     if (current_view_ != nullptr)
     {
+        qDebug() << "on_copy";
         current_view_->on_copy_del (table_view::OPERATION_COPY);
     }
 }
@@ -158,6 +165,7 @@ void data_widget::on_paste()
 {
     if (current_view_ != nullptr)
     {
+        qDebug() << "on_paste";
         current_view_->on_paste ();
     }
 }

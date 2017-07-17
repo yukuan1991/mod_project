@@ -122,6 +122,7 @@ void table_view::on_copy_del(int flag)
         }
     }
     board->setText (clip_data);
+    qDebug() << clip_data;
 }
 
 void table_view::on_paste()
@@ -175,6 +176,7 @@ void table_view::on_paste()
             }
 
             auto index = model->index (current_row, current_col);
+            qDebug() << data[i][j].data();
             model->setData (index, data[i][j].data (), paste_role);
         }
     }

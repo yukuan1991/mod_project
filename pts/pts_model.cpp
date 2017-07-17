@@ -115,7 +115,10 @@ bool pts_model::set_code(const QModelIndex &index, const QVariant &value, int ro
                 if (value.toInt () == 1 and var.type () == QVariant::StringList)
                 {
                     auto list = var.toStringList ();
-                    list.removeLast ();
+                    if (not list.empty())
+                    {
+                        list.removeLast ();
+                    }
                     json_model::setData (index, list, Qt::EditRole);
                 }
                 else
