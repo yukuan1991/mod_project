@@ -62,6 +62,18 @@
         <layout class="QGridLayout" name="gridLayout">
          <item row="4" column="2">
           <widget class="push_button" name="button_mod_15">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>R2</string>
            </property>
@@ -69,6 +81,18 @@
          </item>
          <item row="2" column="0">
           <widget class="push_button" name="button_mod_9">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>P0</string>
            </property>
@@ -76,6 +100,18 @@
          </item>
          <item row="0" column="5">
           <widget class="push_button" name="button_mod_5">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>M5</string>
            </property>
@@ -83,6 +119,18 @@
          </item>
          <item row="1" column="0">
           <widget class="push_button" name="button_mod_6">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>G0</string>
            </property>
@@ -90,6 +138,18 @@
          </item>
          <item row="0" column="1">
           <widget class="push_button" name="button_mod_1">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>M1</string>
            </property>
@@ -97,6 +157,18 @@
          </item>
          <item row="0" column="3">
           <widget class="push_button" name="button_mod_3">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>M3</string>
            </property>
@@ -104,6 +176,18 @@
          </item>
          <item row="4" column="3">
           <widget class="push_button" name="button_mod_16">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>F3</string>
            </property>
@@ -111,6 +195,18 @@
          </item>
          <item row="4" column="6">
           <widget class="push_button" name="button_mod_19">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>B17</string>
            </property>
@@ -118,6 +214,18 @@
          </item>
          <item row="3" column="3">
           <widget class="push_button" name="button_mod_13">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>D3</string>
            </property>
@@ -125,6 +233,18 @@
          </item>
          <item row="2" column="2">
           <widget class="push_button" name="button_mod_10">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>P2</string>
            </property>
@@ -132,6 +252,18 @@
          </item>
          <item row="5" column="6">
           <widget class="push_button" name="button_mod_21">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>S30</string>
            </property>
@@ -139,6 +271,18 @@
          </item>
          <item row="1" column="1">
           <widget class="push_button" name="button_mod_7">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>G1</string>
            </property>
@@ -146,6 +290,18 @@
          </item>
          <item row="1" column="3">
           <widget class="push_button" name="button_mod_8">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>G3</string>
            </property>
@@ -153,6 +309,18 @@
          </item>
          <item row="0" column="2">
           <widget class="push_button" name="button_mod_2">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>M2</string>
            </property>
@@ -160,6 +328,18 @@
          </item>
          <item row="4" column="5">
           <widget class="push_button" name="button_mod_18">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>W5</string>
            </property>
@@ -167,6 +347,18 @@
          </item>
          <item row="5" column="1">
           <widget class="push_button" name="button_mod_20">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>L1</string>
            </property>
@@ -174,6 +366,18 @@
          </item>
          <item row="3" column="2">
           <widget class="push_button" name="button_mod_12">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>E2</string>
            </property>
@@ -181,6 +385,18 @@
          </item>
          <item row="3" column="4">
           <widget class="push_button" name="button_mod_14">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>A4</string>
            </property>
@@ -188,6 +404,18 @@
          </item>
          <item row="0" column="4">
           <widget class="push_button" name="button_mod_4">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>M4</string>
            </property>
@@ -195,6 +423,18 @@
          </item>
          <item row="4" column="4">
           <widget class="push_button" name="button_mod_17">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>C4</string>
            </property>
@@ -202,6 +442,18 @@
          </item>
          <item row="2" column="5">
           <widget class="push_button" name="button_mod_11">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
             <string>P5</string>
            </property>
@@ -220,6 +472,12 @@
      </item>
      <item>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="minimumSize">
+        <size>
+         <width>500</width>
+         <height>300</height>
+        </size>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
