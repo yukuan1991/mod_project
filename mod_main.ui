@@ -33,7 +33,14 @@
     <widget class="ribbon_mod" name="widget_ribbon" native="true"/>
    </item>
    <item>
-    <widget class="data_widget" name="widget_data" native="true"/>
+    <widget class="data_widget" name="widget_data" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>300</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="mod_widget" name="widget_mod" native="true"/>
