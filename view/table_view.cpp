@@ -177,7 +177,9 @@ void table_view::on_paste()
 
             auto index = model->index (current_row, current_col);
             qDebug() << data[i][j].data();
+//            model->setData (index, data[i][j].data (), Qt::UserRole + 100);
             model->setData (index, data[i][j].data (), paste_role);
+
         }
     }
 }

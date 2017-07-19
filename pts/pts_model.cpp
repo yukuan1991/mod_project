@@ -63,10 +63,8 @@ bool pts_model::setData(const QModelIndex &index, const QVariant &value, int rol
 
     for (auto& it : this->set_data_map_)
     {
-
         if (*op_header == it.header_)
         {
-
             auto func_ptr = it.setter_;
             return (this->*func_ptr) (index, value, role);
         }
@@ -79,7 +77,7 @@ bool pts_model::set_code(const QModelIndex &index, const QVariant &value, int ro
 {
     assert (abs (rate_ >= 0.0001));
 
-    if (role ==Qt::EditRole and value.isValid ())
+    if (role == Qt::EditRole and value.isValid ())
     {
         if (QVariant::String == value.type ())
         {
@@ -131,6 +129,10 @@ bool pts_model::set_code(const QModelIndex &index, const QVariant &value, int ro
                 }
             }
         }
+    }
+    else if(role == paste_role and value.isValid ())
+    {
+        json_model::setData (index, value, role);
     }
     return false;
 }

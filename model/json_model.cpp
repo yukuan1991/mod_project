@@ -342,14 +342,14 @@ bool json_model::paste_data(const QModelIndex &index, const QVariant &value)
     auto op_header = get_header (index);
     assert (op_header);
 
-    if (paste_col_.contains (*op_header))
-    {
+//    if (paste_col_.contains (*op_header))
+//    {
         return setData (index, value, Qt::EditRole);
-    }
-    else
-    {
-        return false;
-    }
+//    }
+//    else
+//    {
+//        return false;
+//    }
 }
 
 
