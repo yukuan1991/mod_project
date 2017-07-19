@@ -71,11 +71,7 @@ inline QString get_index_header (QAbstractItemModel* model, const QModelIndex& i
     return model->headerData (index.column (), Qt::Horizontal).toString ();
 }
 
-inline auto& current_method ()
-{
-    static PTS method;
-    return method;
-}
+
 
 inline auto read_tmu_data ()
 {

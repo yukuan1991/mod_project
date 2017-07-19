@@ -177,9 +177,11 @@ void pts_delegate::set_code(QWidget *editor, QAbstractItemModel *model, const QM
 {
     auto edit = dynamic_cast<QLineEdit*> (editor); assert (edit);
     std::string raw_code = edit->text ().toStdString ();
+
     boost::trim (raw_code);
 
     std::for_each (raw_code.begin (), raw_code.end (), [] (auto& ch) {if (ch >= 'a' and ch <= 'z') ch &= ~(32);});
+
 
     boost::regex splitter ("[[:alnum:]]+");
     boost::smatch hit;
@@ -188,27 +190,17 @@ void pts_delegate::set_code(QWidget *editor, QAbstractItemModel *model, const QM
 
     QStringList code_list;
     auto tmu = 0;
-    double rate = 0.0;
     while (boost::regex_search (start, stop, hit, splitter))
     {
-        auto code = hit[0].str ();
-        decltype (code) prefix_code;
-        if (current_method () == PTS::mtm)
-        {
-            prefix_code = "mtm_" + code;
-        }
-        else if (current_method () == PTS::mod)
-        {
-            prefix_code = "mod_" + code;
-        }
-        else
-        {
-            prefix_code = "most_" + code;
-        }
+        const auto code = hit[0].str ();
+
+        const auto prefix_code = "mod_" + code;
+
         auto found = kv_tmu_.find (prefix_code);
+
         if (found == kv_tmu_.end ())
         {
-            model->setData (index, edit->text ().trimmed (), Qt::EditRole);
+            model->setData (index, raw_code.data (), Qt::EditRole);
             return;
         }
 

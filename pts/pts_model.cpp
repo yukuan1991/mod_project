@@ -52,12 +52,15 @@ QVariant pts_model::data(const QModelIndex &index, int role) const
 
 bool pts_model::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__;
     if (!index.isValid () and value.type () == QVariant::Double and role == Qt::UserRole + 100)
     {
+        qDebug() << __PRETTY_FUNCTION__ << __LINE__;
         rate_ = value.toDouble ();
         return true;
     }
 
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__;
     auto op_header = get_header (index);
     assert (op_header);
 
@@ -128,10 +131,16 @@ bool pts_model::set_code(const QModelIndex &index, const QVariant &value, int ro
                     setData (index, QString{}, Qt::EditRole);
                 }
             }
+            else if (QVariant::Invalid == value.type())
+            {
+                setData (index, QString {}, Qt::EditRole);
+            }
+
         }
     }
-    else if(role == paste_role and value.isValid ())
+    else if(role == paste_role)
     {
+        qDebug() << __PRETTY_FUNCTION__ << __LINE__;
         json_model::setData (index, value, role);
     }
     return false;
