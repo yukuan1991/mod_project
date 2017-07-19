@@ -48,7 +48,7 @@ private:
     data_map_ [6] =
     {
         {"代码", &pts_model::get_code},
-        {"MOD/TMU", &pts_model::get_tmu},
+        {"MOD", &pts_model::get_tmu},
         {"基本时间", &pts_model::get_base_time},
         {"增值/非增值", &pts_model::get_if_valuable},
         {"宽放率", &pts_model::get_allowance},

@@ -9,15 +9,15 @@ bool pts_model::init(PTS attr)
     switch (attr)
     {
     case PTS::left:
-        headers_ << "作业内容" << "代码" << "数量*频次" << "MOD/TMU" << "评比系数" << "基本时间";
+        headers_ << "作业内容" << "代码" << "数量*频次" << "MOD" << "评比系数" << "基本时间";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
         break;
     case PTS::right:
-        headers_ << "基本时间" << "评比系数" << "MOD/TMU" << "数量*频次" << "代码" << "作业内容";
+        headers_ << "基本时间" << "评比系数" << "MOD" << "数量*频次" << "代码" << "作业内容";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
         break;
     case PTS::result:
-        headers_ << "作业内容" << "代码" << "数量*频次" << "MOD/TMU" << "评比系数" << "基本时间" << "宽放率" << "标准工时" << "增值/非增值" << "操作分类";
+        headers_ << "作业内容" << "代码" << "数量*频次" << "MOD" << "评比系数" << "基本时间" << "宽放率" << "标准工时" << "增值/非增值" << "操作分类";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数" << "宽放率" << "操作分类";
         break;
     default:
@@ -170,7 +170,7 @@ QVariant pts_model::get_base_time(const QModelIndex &index, int role) const
         return {};
     }
 
-    auto tmu = get_header_data (this, "MOD/TMU", index);
+    auto tmu = get_header_data (this, "MOD", index);
     auto judge_rate = get_header_data (this, "评比系数", index);
     if (!tmu.isValid () or !judge_rate.isValid ())
     {
