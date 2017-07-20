@@ -180,7 +180,6 @@ void table_view::on_paste()
             qDebug() << data[i][j].data();
 //            model->setData (index, data[i][j].data (), Qt::UserRole + 100);
             model->setData (index, data[i][j].data (), paste_role);
-
         }
     }
 }

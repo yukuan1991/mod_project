@@ -47,6 +47,8 @@ protected:
     QStringList headers_;
     QStringList edit_col_;
     QStringList paste_col_;
+private:
+    std::map<std::string, int> kv_tmu_;
 };
 
 #endif // TABLE_MODEL_H

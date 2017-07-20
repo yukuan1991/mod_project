@@ -11,14 +11,17 @@ bool pts_model::init(PTS attr)
     case PTS::left:
         headers_ << "作业内容" << "代码" << "数量*频次" << "MOD" << "评比系数" << "基本时间";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
+        paste_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
         break;
     case PTS::right:
         headers_ << "基本时间" << "评比系数" << "MOD" << "数量*频次" << "代码" << "作业内容";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
+        paste_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数";
         break;
     case PTS::result:
         headers_ << "作业内容" << "代码" << "数量*频次" << "MOD" << "评比系数" << "基本时间" << "宽放率" << "标准工时" << "增值/非增值" << "操作分类";
         edit_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数" << "宽放率" << "操作分类";
+        paste_col_ << "作业内容" << "代码" << "数量*频次" << "评比系数" << "宽放率" << "操作分类";
         break;
     default:
         assert (false);
@@ -52,15 +55,12 @@ QVariant pts_model::data(const QModelIndex &index, int role) const
 
 bool pts_model::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__;
     if (!index.isValid () and value.type () == QVariant::Double and role == Qt::UserRole + 100)
     {
-        qDebug() << __PRETTY_FUNCTION__ << __LINE__;
         rate_ = value.toDouble ();
         return true;
     }
 
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__;
     auto op_header = get_header (index);
     assert (op_header);
 
@@ -140,7 +140,6 @@ bool pts_model::set_code(const QModelIndex &index, const QVariant &value, int ro
     }
     else if(role == paste_role)
     {
-        qDebug() << __PRETTY_FUNCTION__ << __LINE__;
         json_model::setData (index, value, role);
     }
     return false;

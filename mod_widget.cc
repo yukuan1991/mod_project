@@ -13,11 +13,11 @@ mod_widget::mod_widget(QWidget *parent) :
 
     init ();
     std::tie (kv_tmu_, mod_data_) = read_tmu_data ();
-    for(const auto & w : kv_tmu_)
-    {
-        std::cout << w.first << " ";
-        std::cout << w.second << std::endl;;
-    }
+//    for(const auto & w : kv_tmu_)
+//    {
+//        std::cout << w.first << " ";
+//        std::cout << w.second << std::endl;;
+//    }
 
 //    emit unit_changed(0.129);
 }
