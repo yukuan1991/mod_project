@@ -27,6 +27,11 @@ mod_widget::~mod_widget()
     delete ui;
 }
 
+void mod_widget::set_std_time_sum(QString &sum)
+{
+    ui->label_total->setText(sum);
+}
+
 //double mod_widget::current_unit()
 //{
 //    return 0.129;

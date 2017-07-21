@@ -23,6 +23,27 @@ data_widget::~data_widget()
     delete ui;
 }
 
+QString data_widget::get_std_time_sum() const
+{
+    auto col = 5;
+    double sum = 0;
+    for (int row = 0; row < static_cast<int>(result_model_->size ()); ++row)
+    {
+        auto pos = result_model_->index (row, col);
+        auto vat = result_model_->data (pos);
+        if (vat.isNull ())
+        {
+            continue;
+        }
+        else
+        {
+            auto time = vat.toDouble ();
+            sum += time;
+        }
+    }
+    return QString::number(sum, 'f', 2);
+}
+
 void data_widget::add_code(const QVariant &code)
 {
     if (current_view_ == nullptr or current_view_->selectionModel ()->selectedIndexes ().empty ())
@@ -64,6 +85,10 @@ void data_widget::add_code(const QVariant &code)
     assert (min_row_index != -1 and min_row_index < code_list.size ());
 
     current_view_->model ()->setData (code_list[min_row_index], code);
+
+    auto sum = get_std_time_sum();
+    qDebug() << sum;
+    emit std_time_sum(sum);
 }
 
 void data_widget::set_unit(double unit)
@@ -123,6 +148,25 @@ void data_widget::set_row(int num)
     result_model_->resize (static_cast<unsigned int>(num));
     ui->table_result->setModel(nullptr);
     ui->table_result->setModel(result_model_.get ());
+}
+
+bool data_widget::task_content_check()
+{
+    for (int i = 0; i < result_model_->rowCount (); i ++)
+    {
+        if (get_header_data (result_model_.get (), "作业内容", i).toString ().trimmed ().isEmpty ())
+        {
+            QMessageBox::information (this, "作业内容", "作业内容的第" + QString::number (i + 1) + "行为空");
+            return false;
+        }
+        if (get_header_data (result_model_.get (), "代码", i, Qt::UserRole + 20).type () != QVariant::StringList)
+        {
+            QMessageBox::information (this, "作业内容", "作业内容的第" + QString::number (i + 1) + "行的代码不符合格式或为空");
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void data_widget::clear()

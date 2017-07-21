@@ -22,6 +22,7 @@ private:
 private:
     void file_operations(const QString& s);
     void file_new();
+    void file_save();
 private:
     void add_row();
     void help_advice();

@@ -41,6 +41,9 @@ void mod_main::init_conn()
 
     connect (ui->widget_data, &data_widget::line_exists, ui->widget_ribbon, &ribbon_mod::set_enabled);
 
+    connect (ui->widget_data, &data_widget::std_time_sum,
+             ui->widget_mod, &mod_widget::set_std_time_sum);
+
 }
 
 void mod_main::file_operations(const QString &s)
@@ -48,6 +51,10 @@ void mod_main::file_operations(const QString &s)
     if(s == "新建")
     {
         file_new();
+    }
+    else if(s == "保存")
+    {
+        file_save();
     }
     else if(s == "退出")
     {
@@ -72,6 +79,14 @@ void mod_main::file_new()
         ui->widget_data->set_row (row);
 
         current_file_data_.clear ();
+    }
+}
+
+void mod_main::file_save()
+{
+    if (!ui->widget_data->task_content_check ())
+    {
+        return;
     }
 }
 

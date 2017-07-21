@@ -21,6 +21,7 @@ public:
     ~mod_widget();
 
     double current_unit ();
+    void set_std_time_sum(QString&);
 
 private:
     void on_button_mod_confirm_return_clicked();

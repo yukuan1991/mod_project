@@ -21,10 +21,14 @@ class data_widget;
 class data_widget : public QWidget
 {
     Q_OBJECT
-
+signals:
+    void line_exists (bool yes_or_no);
+    void std_time_sum(QString&);
 public:
     explicit data_widget(QWidget *parent = 0);
     ~data_widget();
+
+    QString get_std_time_sum() const;
 
     void add_code (const QVariant& code);
     void set_unit (double unit);
@@ -40,9 +44,6 @@ public:
 
     void set_row (int num);
     void add_row (int num);
-    void reduce_row (int num);
-    int row();
-    void set_no_editable ();
     bool task_content_check ();
     void clear ();
     void on_cut ();
@@ -52,14 +53,7 @@ public:
 
 private:
     void on_view_clicked ();
-    json map_to_json (const std::map <QString,QString>& map);
-    json info_pandect ();
-    void save_task (const QString& filename, const std::map <QString,QString>& info,const json &data);
     void set_views ();
-
-signals:
-    void line_exists (bool yes_or_no);
-    void total_time_changed (const QString& sum);
 
 private:
     std::vector<table_view*> views_;
@@ -72,7 +66,6 @@ private:
     std::unique_ptr<QStyledItemDelegate> result_delegate_ {new pts_delegate};
     table_view* current_view_ = nullptr;
 
-    bool is_editable_ = true;
 
 private:
     Ui::data_widget *ui;

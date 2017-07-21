@@ -22,6 +22,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
+    std::string::size_type size() { return data_.size(); }
     virtual void resize (unsigned);
 
     optional<QString> get_header (const QModelIndex& index) const;
