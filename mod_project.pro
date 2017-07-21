@@ -40,7 +40,8 @@ SOURCES += main.cc\
     pts/pts_delegate.cpp \
     pts/pts_model.cpp \
     pts/code_edit.cpp \
-    interface_control/about_us_dlg.cc
+    interface_control/about_us_dlg.cc \
+    mod_analysis.cc
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -60,11 +61,13 @@ HEADERS  += mod_main.h \
     pts/pts_delegate.h \
     pts/pts_model.h \
     pts/code_edit.h \
-    interface_control/about_us_dlg.h
+    interface_control/about_us_dlg.h \
+    mod_analysis.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \
-    mod_widget.ui
+    mod_widget.ui \
+    mod_analysis.ui
 
 LIBS += -lboost_locale
 LIBS += -liconv

@@ -37,12 +37,6 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         add_tab(help, "帮助");
     }
 
-    cut_->setEnabled(false);
-    copy_->setEnabled(false);
-    paste_->setEnabled(false);
-    del_->setEnabled(false);
-    add_row_->setEnabled(false);
-
     connect(this, &ribbon_mod::set_enabled, cut_, &ribbon_tool::setEnabled);
     connect(this, &ribbon_mod::set_enabled, copy_, &ribbon_tool::setEnabled);
     connect(this, &ribbon_mod::set_enabled, paste_, &ribbon_tool::setEnabled);
