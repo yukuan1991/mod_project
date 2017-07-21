@@ -136,8 +136,10 @@ void ribbon::setup_menu()
     connect (this, &ribbon::set_enabled, action.get(), &QAction::setEnabled);
     menu->addAction (action.release ());
 
-//    action =  make_action (QPixmap ("png/另存为.png"), "另存为");
-//    menu->addAction (action.release ());
+    action =  make_action (QPixmap ("png/另存为.png"), "另存为");
+    connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("另存为"); });
+    connect (this, &ribbon::set_enabled, action.get(), &QAction::setEnabled);
+    menu->addAction (action.release ());
 
     action =  make_action (QPixmap ("png/退出.png"), "退出");
     connect (action.get (), &QAction::triggered, [this] { file_menu_triggered ("退出"); });

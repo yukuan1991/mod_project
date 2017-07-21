@@ -6,6 +6,11 @@
 #include <memory>
 #include <QMdiSubWindow>
 #include <QDateEdit>
+#include <QFileDialog>
+#include <base/io/file/file.hpp>
+#include <base/utils/charset.hpp>
+#include <QMessageBox>
+#include <QDebug>
 
 using namespace std;
 
@@ -56,6 +61,10 @@ void mod_main::file_operations(const QString &s)
     {
         file_new();
     }
+    else if(s == "打开")
+    {
+        file_open();
+    }
     else if(s == "保存")
     {
         file_save();
@@ -68,10 +77,49 @@ void mod_main::file_operations(const QString &s)
 
 void mod_main::file_save()
 {
-//    if (!ui->widget_data->task_content_check ())
-//    {
-//        return;
-//    }
+    const auto active = ui->mdi->currentSubWindow ();
+    if (active == nullptr)
+    {
+        return;
+    }
+    auto w = dynamic_cast<mod_analysis *> (active->widget ());
+
+    if (w == nullptr)
+    {
+        return;
+    }
+
+    if (!w->task_content_check ())
+    {
+        return;
+    }
+
+    if (const auto title_path = active->windowTitle ();
+            title_path == "未命名")
+    {
+        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modvaf)"));
+        const auto data = w->dump ();
+        qDebug() << data.dump(4).data();
+
+        file::write_buffer (::utf_to_sys (path.toStdString ()).data (), data.dump (4));
+    }
+    else
+    {
+        const auto data = w->dump ();
+        file::write_buffer (::utf_to_sys (title_path.toStdString ()).data (), data.dump (4));
+    }
+}
+
+void mod_main::file_save_as()
+{
+    auto w = active_window ();
+    if (w != nullptr)
+    {
+        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modvaf)"));
+        const auto data = w->dump ();
+
+        file::write_buffer (::utf_to_sys (path.toStdString ()).data (), data.dump (4));
+    }
 }
 
 
@@ -190,4 +238,31 @@ void mod_main::file_new()
 {
     auto w = create_window ("未命名");
     w->set_task_count ();
+}
+
+void mod_main::file_open()
+{
+    const auto path = QFileDialog::getOpenFileName (this, "文件打开", ".", tr ("Mod Analysis File (*.modvaf)"));
+    if (path.isEmpty ())
+    {
+        return;
+    }
+
+    auto res = file::read_all (::utf_to_sys (path.toStdString ()).data ());
+    if (not res)
+    {
+        QMessageBox::information (this, "打开", "文件无法打开,读取失败");
+        return;
+    }
+    try
+    {
+        const auto data = json::parse (res.value ());
+        auto w = create_window (path);
+        w->load (data);
+    }
+    catch (std::exception &)
+    {
+        QMessageBox::information (this, "打开", "文件格式错误 无法打开");
+        return;
+    }
 }

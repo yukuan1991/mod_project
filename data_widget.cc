@@ -262,6 +262,18 @@ void data_widget::on_del()
     }
 }
 
+json data_widget::json_data()
+{
+    auto left = save_left (); assert (left.is_array());
+    auto right = save_right (); assert (right.is_array());
+    auto result = save_result (); assert (result.is_array());
+
+    json total_data = {{"左手",std::move(left)}
+                       ,{"右手",std::move(right)}
+                       ,{"总计",std::move(result)}};
+    return total_data;
+}
+
 json data_widget::save_result() try
 {
     json result = json::array();
@@ -413,4 +425,159 @@ catch (std::exception &e)
     qDebug () << __LINE__ << e.what();
     return {};
 }
+
+bool data_widget::load_left(const json &left) try
+{
+    QModelIndex index;
+    left_model_->resize(left.size());
+    assert(left.size() == left_model_->rowCount());
+
+    for(uint32_t i=0; i<left.size(); ++i)
+    {
+        const auto& row  = left[i];
+        std::string key = "作业内容";
+        std::string task_name = row[key];
+
+        auto col = get_header_col (left_model_.get (), key.data ());
+        index = left_model_->index(i,col);
+        left_model_->setData(index, task_name.data (), Qt::DisplayRole);
+
+        key = "代码";
+        const auto& code = row[key];
+        QStringList list;
+        for(unsigned j = 0; j < code.size(); ++j)
+        {
+            std::string str = code[j];
+            list << str.data ();
+        }
+        col = get_header_col (left_model_.get (), key.data ());
+        index = left_model_->index(i,col);
+        left_model_->setData(index,list, Qt::DisplayRole);
+
+        key = "数量*频次";
+        int amount = row[key];
+        index = get_header_index (left_model_.get (), key.data (), i);
+        left_model_->setData(index, amount, Qt::DisplayRole);
+
+        key = "评比系数";
+        double rate = row["评比系数"];
+        index = left_model_->index(i,4);
+        left_model_->setData(get_header_index (left_model_.get (), key.data (), i), rate, Qt::DisplayRole);
+    }
+
+    return true;
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return false;
+}
+
+
+bool data_widget::load_right(const json &right) try
+{
+    QModelIndex index;
+    right_model_->resize(right.size());
+    assert(right.size() == right_model_->rowCount());
+
+    for(uint32_t i=0; i<right.size(); ++i)
+    {
+        const auto& row  = right[i];
+        std::string key = "作业内容";
+        std::string task_name = row[key];
+
+        auto col = get_header_col (right_model_.get (), key.data ());
+        index = right_model_->index(i,col);
+        right_model_->setData(index, task_name.data (), Qt::DisplayRole);
+
+        key = "代码";
+        const auto& code = row[key];
+        QStringList list;
+        for(unsigned j = 0; j < code.size(); ++j)
+        {
+            std::string str = code[j];
+            list << str.data ();
+        }
+        col = get_header_col (right_model_.get (), key.data ());
+        index = right_model_->index(i,col);
+        right_model_->setData(index,list, Qt::DisplayRole);
+
+        key = "数量*频次";
+        int amount = row[key];
+        index = get_header_index (right_model_.get (), key.data (), i);
+        right_model_->setData(index, amount, Qt::DisplayRole);
+
+        key = "评比系数";
+        double rate = row["评比系数"];
+        index = right_model_->index(i,4);
+        right_model_->setData(get_header_index (right_model_.get (), key.data (), i), rate, Qt::DisplayRole);
+    }
+    return true;
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return false;
+}
+
+
+bool data_widget::load_result(const json &result) try
+{
+    QModelIndex index;
+    result_model_->resize(result.size());
+    assert(static_cast<int>(result.size()) == result_model_->rowCount());
+
+    for(uint32_t i=0; i<result.size(); ++i)
+    {
+        const auto& row  = result[i];
+        std::string key = "作业内容";
+        std::string task_name = row[key];
+
+        auto col = get_header_col (result_model_.get (), key.data ());
+        index = result_model_->index(i,col);
+        result_model_->setData(index, task_name.data (), Qt::EditRole);
+
+        key = "代码";
+        const auto& code = row[key];
+        QStringList list;
+        for(unsigned j = 0; j < code.size(); ++j)
+        {
+            std::string str = code[j];
+            list << str.data ();
+        }
+        col = get_header_col (result_model_.get (), key.data ());
+        index = result_model_->index(i,col);
+        result_model_->setData(index,list, Qt::EditRole);
+
+        key = "数量*频次";
+        int amount = row[key];
+        index = get_header_index (result_model_.get (), key.data (), i);
+        result_model_->setData(index, amount, Qt::EditRole);
+
+        key = "评比系数";
+        double rate = row["评比系数"];
+        index = result_model_->index(i,4);
+        result_model_->setData(get_header_index (result_model_.get (), key.data (), i), rate, Qt::EditRole);
+
+        key = "宽放率";
+        std::string allowance = row [key];
+        auto pos = allowance.find('%',0); assert (pos != std::string::npos);
+        allowance.erase(pos,1);
+
+        result_model_->setData(get_header_index (result_model_.get (), key.data (), i),
+                               QString{allowance.data ()}.toDouble () / 100, Qt::EditRole);
+
+        key = "操作分类";
+        std::string operation_type = row [key];
+        result_model_->setData(get_header_index (result_model_.get (), key.data (), i), operation_type.data (), Qt::EditRole);
+    }
+    return true;
+
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return false;
+}
+
 

@@ -30,17 +30,17 @@ public:
 
     QString get_std_time_sum() const;
 
+
     void add_code (const QVariant& code);
     void set_unit (double unit);
     void next_code ();
     json save_left();
     json save_result();
     json save_right();
+    json json_data ();
     bool load_left(const json& left_array);
     bool load_right(const json& right_array);
     bool load_result(const json& result_array);
-    json json_data ();
-    void save(const std::map<QString, QString> &additional_info, const QString& method_info);
 
     void set_row (int num);
     void add_row (int num);

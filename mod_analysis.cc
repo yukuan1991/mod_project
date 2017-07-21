@@ -1,6 +1,7 @@
 ﻿#include "mod_analysis.h"
 #include "ui_mod_analysis.h"
 #include <QInputDialog>
+#include <QDate>
 
 mod_analysis::mod_analysis(QWidget *parent) :
     QWidget(parent),
@@ -56,6 +57,11 @@ void mod_analysis::set_task_count()
     }
 }
 
+bool mod_analysis::task_content_check()
+{
+    return ui->widget_data->task_content_check();
+}
+
 void mod_analysis::add_row()
 {
     QInputDialog dlg;
@@ -101,6 +107,60 @@ void mod_analysis::set_task_man(const QString &data)
 QString mod_analysis::task_man() const
 {
     return ui->widget_mod->task_man();
+}
+
+QString mod_analysis::std_time_sum() const
+{
+    return ui->widget_data->get_std_time_sum();
+}
+
+nlohmann::json mod_analysis::dump()
+{
+    json data;
+    data ["form"] = ui->widget_data->json_data ();
+
+    data ["measure-date"] = measure_date().toStdString ();
+    data ["measure-man"] = measure_man().toStdString ();
+    data ["task-man"] = task_man().toStdString ();
+    data ["std-time"] = std_time_sum().toStdString();
+
+    return data;
+}
+
+void mod_analysis::load(const nlohmann::json &data)
+{
+    const auto iter_form = data.find ("form");
+    assert (iter_form != end (data));
+    assert (iter_form->is_object ());
+    auto iter_right = iter_form->find ("右手");
+    assert (iter_right != iter_form->end ());
+    assert (iter_right->is_array ());
+    auto iter_left = iter_form->find ("左手");
+    assert (iter_left != iter_form->end () and iter_left->is_array ());
+    auto iter_result = iter_form->find ("总计");
+    assert (iter_result != iter_form->end () and iter_result->is_array ());
+
+    ui->widget_data->set_row (static_cast<int> (iter_left->size ()));
+    ui->widget_data->load_left (*iter_left);
+    ui->widget_data->load_right (*iter_right);
+    ui->widget_data->load_result (*iter_result);
+
+    const auto measure_date = data.find ("measure-date");
+    if (measure_date != end (data) and measure_date->is_string ())
+    {
+        auto date = QString::fromStdString (*measure_date);
+        set_measure_date (QDate::fromString(date, "yyyy-MM-dd"));
+    }
+    const auto measure_man = data.find ("measure-man");
+    if (measure_man != end (data) and measure_man->is_string ())
+    {
+        set_measure_man (QString::fromStdString (*measure_man));
+    }
+    const auto task_man = data.find ("task-man");
+    if (task_man != end (data) and task_man->is_string ())
+    {
+        set_task_man (QString::fromStdString (*task_man));
+    }
 }
 
 

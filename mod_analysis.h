@@ -25,6 +25,7 @@ public:
 
 
     void set_task_count ();
+    bool task_content_check ();
     void add_row();
 
     void set_measure_date (const QDate & date);
@@ -36,6 +37,10 @@ public:
     void set_task_man (const QString & data);
     QString task_man () const;
 
+    QString std_time_sum () const;
+
+    json dump();
+    void load (const json& data);
 private:
     void init();
     void init_conn();
