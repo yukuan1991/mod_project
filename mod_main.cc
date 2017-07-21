@@ -5,6 +5,7 @@
 #include "mod_analysis.h"
 #include <memory>
 #include <QMdiSubWindow>
+#include <QDateEdit>
 
 using namespace std;
 
@@ -32,13 +33,14 @@ void mod_main::init_conn()
 {
     connect(ui->widget_ribbon, &ribbon_mod::file_menu_triggered, [this] (const QString & s) { file_operations(s); });
 
+    connect(ui->widget_ribbon, &ribbon_mod::measure_date, this, &mod_main::on_measure_date);
+    connect(ui->widget_ribbon, &ribbon_mod::measure_man, this, &mod_main::on_measure_man);
+    connect(ui->widget_ribbon, &ribbon_mod::task_man, this, &mod_main::on_task_man);
+
     connect(ui->widget_ribbon, &ribbon_mod::help, this, &mod_main::help_advice);
 
 //    connect (ui->widget_data, &data_widget::line_exists, ui->widget_ribbon, &ribbon_mod::set_enabled);
     connect(ui->mdi, &QMdiArea::subWindowActivated, this, &mod_main::set_button_enabled);
-
-//    connect (ui->widget_data, &data_widget::std_time_sum,
-//             ui->widget_mod, &mod_widget::set_std_time_sum);
 
 }
 
@@ -82,6 +84,75 @@ void mod_main::help_advice()
     about_us_dlg::show_info(text, qr_code);
 }
 
+void mod_main::on_measure_date()
+{
+    auto w = active_window ();
+    if (w == nullptr)
+    {
+        return;
+    }
+
+    QDialog dlg (this);
+
+    auto edit = new QDateEdit (&dlg);
+    edit->setCalendarPopup (true);
+    edit->setDate (QDate::currentDate ());
+
+    auto ok_button = new QPushButton (&dlg);
+    ok_button->setText ("确定");
+
+    auto layout = new QHBoxLayout;
+
+    layout->addWidget (edit);
+    layout->addWidget (ok_button);
+    dlg.setLayout (layout);
+
+    connect (ok_button, &QPushButton::clicked, &dlg, &QDialog::accept);
+    const auto res = dlg.exec ();
+
+    if (res != QDialog::Accepted)
+    {
+        return;
+    }
+
+    w->set_measure_date (edit->date ());
+}
+
+void mod_main::on_measure_man()
+{
+    auto w = active_window ();
+    if (w == nullptr)
+    {
+        return;
+    }
+
+    bool is_ok;
+    const auto old_data = w->measure_man ();
+    const auto data = QInputDialog::getText (this, "测量人", "测量人", QLineEdit::Normal, old_data, &is_ok);
+    if (is_ok)
+    {
+        w->set_measure_man (data);
+    }
+}
+
+void mod_main::on_task_man()
+{
+    auto w = active_window ();
+    if (w == nullptr)
+    {
+        return;
+    }
+
+    bool is_ok;
+    const auto old_data = w->task_man ();
+    const auto data = QInputDialog::getText (this, "作业员", "作业员", QLineEdit::Normal, old_data, &is_ok);
+
+    if (is_ok)
+    {
+        w->set_task_man (data);
+    }
+}
+
 not_null<mod_analysis *> mod_main::create_window(const QString &title)
 {
     auto mod_win = make_unique<mod_analysis> ();
@@ -106,8 +177,8 @@ mod_analysis *mod_main::active_window()
 {
     if(QMdiSubWindow* active_subwindow = ui->mdi->activeSubWindow())
     {
-        mod_analysis* canvas_ptr = dynamic_cast<mod_analysis*>(active_subwindow->widget());
-        return canvas_ptr;
+        mod_analysis* w = dynamic_cast<mod_analysis*>(active_subwindow->widget());
+        return w;
     }
     else
     {

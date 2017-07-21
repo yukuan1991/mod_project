@@ -26,6 +26,20 @@ ribbon_mod::ribbon_mod(QWidget *parent)
     }
 
     {
+        std::array<ui_group, 1> setting;
+
+        button_cell b;
+        b.add ("测量日期", QPixmap ("png/测量日期.png"), measure_date_);
+        b.add ("测量人", QPixmap ("png/测量人.png"), measure_man_);
+        b.add ("作业员", QPixmap ("png/作业员.png"), task_man_);
+        b.set_title("第一类");
+
+        setting[0] = ::move (b);
+
+        add_tab(setting, "设置");
+    }
+
+    {
         std::array<ui_group, 1> help;
 
         button_cell b;
@@ -42,13 +56,21 @@ ribbon_mod::ribbon_mod(QWidget *parent)
     connect(this, &ribbon_mod::set_enabled, paste_, &ribbon_tool::setEnabled);
     connect(this, &ribbon_mod::set_enabled, del_, &ribbon_tool::setEnabled);
     connect(this, &ribbon_mod::set_enabled, add_row_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, measure_date_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, measure_man_, &ribbon_tool::setEnabled);
+    connect(this, &ribbon_mod::set_enabled, task_man_, &ribbon_tool::setEnabled);
+
 
     connect(cut_, &ribbon_tool::clicked, this, &ribbon_mod::cut);
     connect(copy_, &ribbon_tool::clicked, this, &ribbon_mod::copy);
     connect(paste_, &ribbon_tool::clicked, this, &ribbon_mod::paste);
     connect(del_, &ribbon_tool::clicked, this, &ribbon_mod::del);
-
     connect(add_row_, &ribbon_tool::clicked, this, &ribbon_mod::add_row);
+
+    connect(measure_date_, &ribbon_tool::clicked, this, &ribbon_mod::measure_date);
+    connect(measure_man_, &ribbon_tool::clicked, this, &ribbon_mod::measure_man);
+    connect(task_man_, &ribbon_tool::clicked, this, &ribbon_mod::task_man);
+
     connect(help_, &ribbon_tool::clicked, this, &ribbon_mod::help);
 
 }

@@ -2,6 +2,7 @@
 #include "ui_mod_widget.h"
 #include <assert.h>
 #include "arithmetic_resource.hpp"
+#include <QDate>
 
 std::map<std::string, int> mod_widget::kv_tmu_;
 
@@ -30,6 +31,36 @@ mod_widget::~mod_widget()
 void mod_widget::set_std_time_sum(QString &sum)
 {
     ui->label_total->setText(sum);
+}
+
+void mod_widget::set_measure_date(const QDate &date)
+{
+    ui->measure_date->setText (date.toString ("yyyy-MM-dd"));
+}
+
+QString mod_widget::measure_date() const
+{
+    return ui->measure_date->text ();
+}
+
+void mod_widget::set_measure_man(const QString &data)
+{
+    ui->measure_man->setText (data);
+}
+
+QString mod_widget::measure_man() const
+{
+    return ui->measure_man->text();
+}
+
+void mod_widget::set_task_man(const QString &data)
+{
+    ui->task_man->setText (data);
+}
+
+QString mod_widget::task_man() const
+{
+    return ui->task_man->text();
 }
 
 //double mod_widget::current_unit()

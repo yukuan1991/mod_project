@@ -31,6 +31,9 @@ void mod_analysis::init_conn()
     connect(this, &mod_analysis::copy, ui->widget_data, &data_widget::on_copy);
     connect(this, &mod_analysis::paste, ui->widget_data, &data_widget::on_paste);
     connect(this, &mod_analysis::del, ui->widget_data, &data_widget::on_del);
+
+    connect (ui->widget_data, &data_widget::std_time_sum,
+             ui->widget_mod, &mod_widget::set_std_time_sum);
 }
 
 void mod_analysis::set_task_count()
@@ -68,6 +71,36 @@ void mod_analysis::add_row()
         auto row = dlg.intValue ();
         ui->widget_data->set_row (row);
     }
+}
+
+void mod_analysis::set_measure_date(const QDate &date)
+{
+    ui->widget_mod->set_measure_date(date);
+}
+
+QString mod_analysis::measure_date() const
+{
+    return ui->widget_mod->measure_date();
+}
+
+void mod_analysis::set_measure_man(const QString &data)
+{
+    ui->widget_mod->set_measure_man(data);
+}
+
+QString mod_analysis::measure_man() const
+{
+    return ui->widget_mod->measure_man();
+}
+
+void mod_analysis::set_task_man(const QString &data)
+{
+    ui->widget_mod->set_task_man(data);
+}
+
+QString mod_analysis::task_man() const
+{
+    return ui->widget_mod->task_man();
 }
 
 

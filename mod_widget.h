@@ -23,6 +23,14 @@ public:
     double current_unit ();
     void set_std_time_sum(QString&);
 
+    void set_measure_date (const QDate & date);
+    QString measure_date () const;
+
+    void set_measure_man (const QString & data);
+    QString measure_man () const;
+
+    void set_task_man (const QString & data);
+    QString task_man () const;
 private:
     void on_button_mod_confirm_return_clicked();
 

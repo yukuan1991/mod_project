@@ -16,6 +16,9 @@ data_widget::data_widget(QWidget *parent) :
     views_.push_back (ui->table_left);
     views_.push_back (ui->table_right);
     set_views();
+
+    connect(result_model_.get(), &pts_model::dataChanged,
+            [this] { auto sum = get_std_time_sum(); emit std_time_sum(sum); });
 }
 
 data_widget::~data_widget()
@@ -85,10 +88,6 @@ void data_widget::add_code(const QVariant &code)
     assert (min_row_index != -1 and min_row_index < code_list.size ());
 
     current_view_->model ()->setData (code_list[min_row_index], code);
-
-    auto sum = get_std_time_sum();
-    qDebug() << sum;
-    emit std_time_sum(sum);
 }
 
 void data_widget::set_unit(double unit)
@@ -132,6 +131,55 @@ void data_widget::next_code()
 
     current_view_->clearSelection ();
     current_view_->selectionModel ()->select (next_index, QItemSelectionModel::Select);
+}
+
+json data_widget::save_left() try
+{
+    json left = json::array();
+    QVariant vat;
+    auto model = left_model_.get ();
+    for(int j=0; j < model->rowCount();++j)
+    {
+        json json_row_obj = json::object ();
+
+        auto key = "作业内容"s;
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        key = "代码";
+        auto& code_arr = json_row_obj[key];
+        code_arr = json::array ();
+        vat = get_header_data (model, key.data (), j, Qt::UserRole + 20);
+        auto list = vat.toStringList ();
+        for (auto & it : list)
+        {
+            code_arr.push_back (it.toStdString ());
+        }
+
+        key = "数量*频次";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "MOD";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "评比系数";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        key = "基本时间";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        left.push_back (std::move (json_row_obj));
+    }
+    return left;
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return {};
 }
 
 void data_widget::set_row(int num)
