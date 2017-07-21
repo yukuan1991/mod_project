@@ -262,6 +262,71 @@ void data_widget::on_del()
     }
 }
 
+json data_widget::save_result() try
+{
+    json result = json::array();
+    QVariant vat;
+    auto model = result_model_.get ();
+    for(int j=0; j < model->rowCount();++j)
+    {
+        json json_row_obj = json::object ();
+
+        auto key = "作业内容"s;
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        key = "代码";
+        auto& code_arr = json_row_obj[key];
+        code_arr = json::array ();
+        vat = get_header_data (model, key.data (), j, Qt::UserRole + 20);
+        auto list = vat.toStringList ();
+        for (auto & it : list)
+        {
+            code_arr.push_back (it.toStdString ());
+        }
+
+        key = "数量*频次";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "MOD";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "评比系数";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        key = "基本时间";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        key = "宽放率";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        key = "标准工时";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj["标准时间"] = vat.toDouble ();
+
+        key = "增值/非增值";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        key = "操作分类";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        result.push_back (std::move (json_row_obj));
+    }
+    return result;
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return {};
+}
+
 void data_widget::on_view_clicked()
 {
     QObject* src = sender (); assert (src);
@@ -298,3 +363,54 @@ void data_widget::set_views()
         iter->setVerticalScrollBar (scroll.release ());
     }
 }
+
+json data_widget::save_right() try
+{
+    json right = json::array();
+    QVariant vat;
+    auto model = right_model_.get ();
+    for(int j=0; j < model->rowCount();++j)
+    {
+        json json_row_obj = json::object ();
+
+        auto key = "作业内容"s;
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toString ().toStdString ();
+
+        key = "代码";
+        auto& code_arr = json_row_obj[key];
+        code_arr = json::array ();
+        vat = get_header_data (model, key.data (), j, Qt::UserRole + 20);
+        auto list = vat.toStringList ();
+        for (auto & it : list)
+        {
+            code_arr.push_back (it.toStdString ());
+        }
+
+        key = "数量*频次";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "MOD";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toInt ();
+
+        key = "评比系数";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        key = "基本时间";
+        vat = get_header_data (model, key.data (), j);
+        json_row_obj[key] = vat.toDouble ();
+
+        right.push_back (std::move (json_row_obj));
+    }
+
+    return right;
+}
+catch (std::exception &e)
+{
+    qDebug () << __LINE__ << e.what();
+    return {};
+}
+
