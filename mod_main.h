@@ -30,11 +30,10 @@ private:
     void file_save();
     void file_save_as();
 private:
-    void help_advice();
-private:
     void on_measure_date ();
     void on_measure_man ();
     void on_task_man ();
+    void help_advice();
 private:
     not_null<mod_analysis*> create_window (const QString & title);
     mod_analysis* active_window();

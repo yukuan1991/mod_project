@@ -69,6 +69,10 @@ void mod_main::file_operations(const QString &s)
     {
         file_save();
     }
+    else if(s == "另存为")
+    {
+        file_save_as();
+    }
     else if(s == "退出")
     {
         close();
@@ -113,6 +117,12 @@ void mod_main::file_save()
 void mod_main::file_save_as()
 {
     auto w = active_window ();
+
+    if (!w->task_content_check ())
+    {
+        return;
+    }
+
     if (w != nullptr)
     {
         const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modvaf)"));
