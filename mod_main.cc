@@ -101,10 +101,11 @@ void mod_main::file_save()
     if (const auto title_path = active->windowTitle ();
             title_path == "未命名")
     {
-        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modvaf)"));
+        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modaf)"));
         const auto data = w->dump ();
         qDebug() << data.dump(4).data();
 
+        active->setWindowTitle(path);
         file::write_buffer (::utf_to_sys (path.toStdString ()).data (), data.dump (4));
     }
     else
@@ -115,7 +116,13 @@ void mod_main::file_save()
 }
 
 void mod_main::file_save_as()
-{
+{   
+    const auto active = ui->mdi->currentSubWindow ();
+    if (active == nullptr)
+    {
+        return;
+    }
+
     auto w = active_window ();
 
     if (!w->task_content_check ())
@@ -125,9 +132,10 @@ void mod_main::file_save_as()
 
     if (w != nullptr)
     {
-        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modvaf)"));
+        const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modaf)"));
         const auto data = w->dump ();
 
+        active->setWindowTitle(path);
         file::write_buffer (::utf_to_sys (path.toStdString ()).data (), data.dump (4));
     }
 }
@@ -252,7 +260,7 @@ void mod_main::file_new()
 
 void mod_main::file_open()
 {
-    const auto path = QFileDialog::getOpenFileName (this, "文件打开", ".", tr ("Mod Analysis File (*.modvaf)"));
+    const auto path = QFileDialog::getOpenFileName (this, "文件打开", ".", tr ("Mod Analysis File (*.modaf)"));
     if (path.isEmpty ())
     {
         return;

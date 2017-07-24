@@ -34,6 +34,7 @@ public:
     void add_code (const QVariant& code);
     void set_unit (double unit);
     void next_code ();
+
     json save_left();
     json save_result();
     json save_right();
@@ -43,7 +44,7 @@ public:
     bool load_result(const json& result_array);
 
     void set_row (int num);
-    void add_row (int num);
+//    void add_row (int num);
     bool task_content_check ();
     void clear ();
     void on_cut ();
