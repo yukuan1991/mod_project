@@ -440,7 +440,7 @@ bool data_widget::load_left(const json &left) try
 
         auto col = get_header_col (left_model_.get (), key.data ());
         index = left_model_->index(i,col);
-        left_model_->setData(index, task_name.data (), Qt::DisplayRole);
+        left_model_->setData(index, task_name.data (), Qt::EditRole);
 
         key = "代码";
         const auto& code = row[key];
@@ -452,17 +452,17 @@ bool data_widget::load_left(const json &left) try
         }
         col = get_header_col (left_model_.get (), key.data ());
         index = left_model_->index(i,col);
-        left_model_->setData(index,list, Qt::DisplayRole);
+        left_model_->setData(index,list, Qt::EditRole);
 
         key = "数量*频次";
         int amount = row[key];
         index = get_header_index (left_model_.get (), key.data (), i);
-        left_model_->setData(index, amount, Qt::DisplayRole);
+        left_model_->setData(index, amount, Qt::EditRole);
 
         key = "评比系数";
         double rate = row["评比系数"];
         index = left_model_->index(i,4);
-        left_model_->setData(get_header_index (left_model_.get (), key.data (), i), rate, Qt::DisplayRole);
+        left_model_->setData(get_header_index (left_model_.get (), key.data (), i), rate, Qt::EditRole);
     }
 
     return true;
@@ -488,7 +488,7 @@ bool data_widget::load_right(const json &right) try
 
         auto col = get_header_col (right_model_.get (), key.data ());
         index = right_model_->index(i,col);
-        right_model_->setData(index, task_name.data (), Qt::DisplayRole);
+        right_model_->setData(index, task_name.data (), Qt::EditRole);
 
         key = "代码";
         const auto& code = row[key];
@@ -500,17 +500,17 @@ bool data_widget::load_right(const json &right) try
         }
         col = get_header_col (right_model_.get (), key.data ());
         index = right_model_->index(i,col);
-        right_model_->setData(index,list, Qt::DisplayRole);
+        right_model_->setData(index,list, Qt::EditRole);
 
         key = "数量*频次";
         int amount = row[key];
         index = get_header_index (right_model_.get (), key.data (), i);
-        right_model_->setData(index, amount, Qt::DisplayRole);
+        right_model_->setData(index, amount, Qt::EditRole);
 
         key = "评比系数";
         double rate = row["评比系数"];
         index = right_model_->index(i,4);
-        right_model_->setData(get_header_index (right_model_.get (), key.data (), i), rate, Qt::DisplayRole);
+        right_model_->setData(get_header_index (right_model_.get (), key.data (), i), rate, Qt::EditRole);
     }
     return true;
 }

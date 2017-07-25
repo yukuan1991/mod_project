@@ -13,12 +13,12 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         b.add ("复制", QPixmap ("png/复制.png"), copy_);
         b.add ("粘贴", QPixmap ("png/粘贴.png"), paste_);
         b.add ("删除", QPixmap ("png/删除.png"), del_);
-        b.set_title("第一类");
+        b.set_title("文档操作");
 
         edit[0] = ::move (b);
 
         b.add ("改变作业项数", QPixmap ("png/作业项数.png"), add_row_);
-        b.set_title("第二类");
+        b.set_title("行数变更");
 
         edit[1] = ::move (b);
 
@@ -32,7 +32,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         b.add ("测量日期", QPixmap ("png/测量日期.png"), measure_date_);
         b.add ("测量人", QPixmap ("png/测量人.png"), measure_man_);
         b.add ("作业员", QPixmap ("png/作业员.png"), task_man_);
-        b.set_title("第一类");
+        b.set_title("信息设置");
 
         setting[0] = ::move (b);
 
@@ -44,7 +44,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
 
         button_cell b;
         b.add ("帮助", QPixmap ("png/帮助.png"), help_);
-        b.set_title("第一类");
+        b.set_title("联系我们");
 
         help[0] = ::move(b);
 

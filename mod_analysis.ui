@@ -10,15 +10,35 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
    <item>
-    <widget class="data_widget" name="widget_data" native="true"/>
+    <widget class="data_widget" name="widget_data" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>200</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
-    <widget class="mod_widget" name="widget_mod" native="true"/>
+    <widget class="mod_widget" name="widget_mod" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>300</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

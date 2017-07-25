@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_3">
+  <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0,1">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,5">
      <item>
@@ -477,7 +477,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -490,6 +490,12 @@
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
             <widget class="QLabel" name="label_2">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string>测量日期</string>
              </property>
@@ -497,6 +503,12 @@
            </item>
            <item row="0" column="1">
             <widget class="QLabel" name="measure_date">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -504,6 +516,12 @@
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_4">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string>测量人</string>
              </property>
@@ -511,6 +529,12 @@
            </item>
            <item row="1" column="1">
             <widget class="QLabel" name="measure_man">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -518,6 +542,12 @@
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_6">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string>作业员</string>
              </property>
@@ -525,6 +555,12 @@
            </item>
            <item row="2" column="1">
             <widget class="QLabel" name="task_man">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -532,6 +568,12 @@
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string>标准总工时</string>
              </property>
@@ -539,6 +581,12 @@
            </item>
            <item row="3" column="1">
             <widget class="QLabel" name="label_total">
+             <property name="minimumSize">
+              <size>
+               <width>65</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>

@@ -20,6 +20,8 @@ mod_main::mod_main(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->mdi->setViewMode (QMdiArea::TabbedView);
+    setWindowState(Qt::WindowMaximized);
+    setMinimumSize(QSize(600, 800));
 //    init();
     init_conn();
     set_button_enabled();
@@ -98,12 +100,12 @@ void mod_main::file_save()
         return;
     }
 
-    if (const auto title_path = active->windowTitle ();
-            title_path == "未命名")
+    const auto title_path = active->windowTitle ();
+    if (title_path == "未命名")
     {
         const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modaf)"));
         const auto data = w->dump ();
-        qDebug() << data.dump(4).data();
+//        qDebug() << data.dump(4).data();
 
         active->setWindowTitle(path);
         file::write_buffer (::utf_to_sys (path.toStdString ()).data (), data.dump (4));
@@ -133,6 +135,12 @@ void mod_main::file_save_as()
     if (w != nullptr)
     {
         const auto path = QFileDialog::getSaveFileName(this, "文件保存", ".", tr ("Mod Analysis File (*.modaf)"));
+
+        if (path.isEmpty())
+        {
+            return;
+        }
+
         const auto data = w->dump ();
 
         active->setWindowTitle(path);
