@@ -40,6 +40,7 @@ void mod_main::init_conn()
 {
     connect(ui->widget_ribbon, &ribbon_mod::file_menu_triggered, [this] (const QString & s) { file_operations(s); });
 
+    connect(ui->widget_ribbon, &ribbon_mod::add_row, this, &mod_main::add_row);
     connect(ui->widget_ribbon, &ribbon_mod::measure_date, this, &mod_main::on_measure_date);
     connect(ui->widget_ribbon, &ribbon_mod::measure_man, this, &mod_main::on_measure_man);
     connect(ui->widget_ribbon, &ribbon_mod::task_man, this, &mod_main::on_task_man);
@@ -148,13 +149,23 @@ void mod_main::file_save_as()
     }
 }
 
+void mod_main::add_row()
+{
+    auto win = active_window();
+    if (win == nullptr)
+    {
+        return;
+    }
+
+    win->add_row();
+}
 
 
 void mod_main::help_advice()
 {
     const QString text = R"(<html><head/><body><p>如果您有任何需求与改进建议，</p><p>请随时联系IEToolkit君qq3350436646</p>
                          <p><span style=" font-weight:600; color:red">加好友请扫右边二维码---&gt;</span></p></body></html>)";
-    const QString qr_code = R"( <a href = "www.shionto.com"> <img src="./png/about-us.png" width="300" height = "400"/></a>)";
+    const QString qr_code = R"( <a href = "www.shionto.com"> <img src="png/about-us.png" width="300" height = "400"/></a>)";
     about_us_dlg::show_info(text, qr_code);
 }
 
@@ -238,7 +249,6 @@ not_null<mod_analysis *> mod_main::create_window(const QString &title)
 
     w->setWindowState (Qt::WindowMaximized);
 
-    connect(ui->widget_ribbon, &ribbon_mod::add_row, ptr_mod_win, &mod_analysis::add_row);
     connect(ui->widget_ribbon, &ribbon_mod::copy, ptr_mod_win, &mod_analysis::copy);
     connect(ui->widget_ribbon, &ribbon_mod::cut, ptr_mod_win, &mod_analysis::cut);
     connect(ui->widget_ribbon, &ribbon_mod::paste, ptr_mod_win, &mod_analysis::paste);
