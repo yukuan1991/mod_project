@@ -165,7 +165,7 @@ void mod_main::help_advice()
 {
     const QString text = R"(<html><head/><body><p>如果您有任何需求与改进建议，</p><p>请随时联系IEToolkit君qq3350436646</p>
                          <p><span style=" font-weight:600; color:red">加好友请扫右边二维码---&gt;</span></p></body></html>)";
-    const QString qr_code = R"( <a href = "www.shionto.com"> <img src="png/about-us.png" width="300" height = "400"/></a>)";
+    const QString qr_code = R"( <a href = "www.shionto.com"> <img src="./png/about-us.png" width="300" height = "400"/></a>)";
     about_us_dlg::show_info(text, qr_code);
 }
 
