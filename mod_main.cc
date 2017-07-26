@@ -21,7 +21,7 @@ mod_main::mod_main(QWidget *parent) :
     ui->setupUi(this);
     ui->mdi->setViewMode (QMdiArea::TabbedView);
     setWindowState(Qt::WindowMaximized);
-    setMinimumSize(QSize(600, 800));
+    setMinimumSize(QSize(1000, 800));
 //    init();
     init_conn();
     set_button_enabled();
@@ -40,6 +40,10 @@ void mod_main::init_conn()
 {
     connect(ui->widget_ribbon, &ribbon_mod::file_menu_triggered, [this] (const QString & s) { file_operations(s); });
 
+    connect(ui->widget_ribbon, &ribbon_mod::copy, this, &mod_main::copy);
+    connect(ui->widget_ribbon, &ribbon_mod::cut, this, &mod_main::cut);
+    connect(ui->widget_ribbon, &ribbon_mod::paste, this, &mod_main::paste);
+    connect(ui->widget_ribbon, &ribbon_mod::del, this, &mod_main::del);
     connect(ui->widget_ribbon, &ribbon_mod::add_row, this, &mod_main::add_row);
     connect(ui->widget_ribbon, &ribbon_mod::measure_date, this, &mod_main::on_measure_date);
     connect(ui->widget_ribbon, &ribbon_mod::measure_man, this, &mod_main::on_measure_man);
@@ -149,6 +153,50 @@ void mod_main::file_save_as()
     }
 }
 
+void mod_main::copy()
+{
+    auto win = active_window();
+    if (win == nullptr)
+    {
+        return;
+    }
+
+    win->copy();
+}
+
+void mod_main::cut()
+{
+    auto win = active_window();
+    if (win == nullptr)
+    {
+        return;
+    }
+
+    win->cut();
+}
+
+void mod_main::paste()
+{
+    auto win = active_window();
+    if (win == nullptr)
+    {
+        return;
+    }
+
+    win->paste();
+}
+
+void mod_main::del()
+{
+    auto win = active_window();
+    if (win == nullptr)
+    {
+        return;
+    }
+
+    win->del();
+}
+
 void mod_main::add_row()
 {
     auto win = active_window();
@@ -248,11 +296,6 @@ not_null<mod_analysis *> mod_main::create_window(const QString &title)
     w->setWindowTitle (title);
 
     w->setWindowState (Qt::WindowMaximized);
-
-    connect(ui->widget_ribbon, &ribbon_mod::copy, ptr_mod_win, &mod_analysis::copy);
-    connect(ui->widget_ribbon, &ribbon_mod::cut, ptr_mod_win, &mod_analysis::cut);
-    connect(ui->widget_ribbon, &ribbon_mod::paste, ptr_mod_win, &mod_analysis::paste);
-    connect(ui->widget_ribbon, &ribbon_mod::del, ptr_mod_win, &mod_analysis::del);
 
     return mod_win.release ();
 }
