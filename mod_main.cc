@@ -25,6 +25,7 @@ mod_main::mod_main(QWidget *parent) :
 //    init();
     init_conn();
     set_button_enabled();
+    setWindowTitle("MOD");
 }
 
 mod_main::~mod_main()

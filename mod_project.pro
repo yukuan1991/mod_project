@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG -= c++11
 QMAKE_CXXFLAGS += -std=c++1z
 
-TARGET = mod_project
+TARGET = mod
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -41,7 +41,8 @@ SOURCES += main.cc\
     pts/pts_model.cpp \
     pts/code_edit.cpp \
     interface_control/about_us_dlg.cc \
-    mod_analysis.cc
+    mod_analysis.cc \
+    verification/verification.cpp
 
 HEADERS  += mod_main.h \
     interface_control/ribbon.h \
@@ -62,15 +63,19 @@ HEADERS  += mod_main.h \
     pts/pts_model.h \
     pts/code_edit.h \
     interface_control/about_us_dlg.h \
-    mod_analysis.h
+    mod_analysis.h \
+    verification/verification.h
 
 FORMS    += mod_main.ui \
     data_widget.ui \
     mod_widget.ui \
     mod_analysis.ui
 
-LIBS += -lboost_locale
-LIBS += -liconv
 LIBS += -lboost_filesystem
 LIBS += -lboost_system
 LIBS += -lboost_regex
+LIBS += -lboost_thread
+LIBS += -lboost_locale
+LIBS += -liconv
+LIBS += -lwininet
+LIBS += -lws2_32
