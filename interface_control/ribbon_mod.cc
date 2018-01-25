@@ -17,8 +17,8 @@ ribbon_mod::ribbon_mod(QWidget *parent)
 
         edit[0] = ::move (b);
 
-        b.add ("改变作业项数", QPixmap ("png/作业项数.png"), add_row_);
-        b.set_title("行数变更");
+        b.add ("更改作业项数", QPixmap ("png/作业项数.png"), add_row_);
+        b.set_title("表格");
 
         edit[1] = ::move (b);
 
@@ -32,7 +32,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
         b.add ("测量日期", QPixmap ("png/测量日期.png"), measure_date_);
         b.add ("测量人", QPixmap ("png/测量人.png"), measure_man_);
         b.add ("作业员", QPixmap ("png/作业员.png"), task_man_);
-        b.set_title("信息设置");
+        b.set_title("属性设置");
 
         setting[0] = ::move (b);
 
@@ -48,7 +48,7 @@ ribbon_mod::ribbon_mod(QWidget *parent)
 
         help[0] = ::move(b);
 
-        add_tab(help, "帮助");
+        add_tab(help, "关于");
     }
 
     connect(this, &ribbon_mod::set_enabled, cut_, &ribbon_tool::setEnabled);
